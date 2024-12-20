@@ -1,0 +1,503 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins',sans-serif;
+}
+header{
+  height: 100vh;
+  width: 100%;
+  background: url("images/background.png") no-repeat;
+  background-position: center;
+}
+::selection{
+  background: #a3f5ec;
+}
+header nav{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 12;
+}
+/* Initial state of the navigation bar */
+nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: top 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hidden state when scrolling down */
+nav.hidden {
+  top: -100px; /* Moves the nav out of view */
+  opacity: 0;  /* Fades out the nav */
+}
+
+.navbar{
+  width: 90%;
+  display: flex;
+  margin: 20px auto 0 auto;
+  align-items: center;
+  justify-content: space-between;
+}
+  header nav .logo{
+  height: 80px;
+  width: 150px;
+}
+.logo img{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+nav .menu{
+  display: flex;
+}
+nav .menu li{
+  list-style: none;
+  margin: 0 10px;
+}
+nav .menu a{
+  color: #2c3e50;
+  font-size: 17px;
+  font-weight: 500;
+  text-decoration: none;
+}
+nav .menu a:hover{
+  color: #000;
+}
+nav .search-box{
+  position: relative;
+  height: 40px;
+  width: 250px;
+}
+.search-box input[type="text"]{
+  position: absolute;
+  font-size: 18px;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  outline: none;
+  color: #2c3350;
+  border: 2px solid #2c3350;
+  background: #f2f2f2;
+  padding: 0 10px 0 40px;
+}
+.search-box .register-btn {
+  display: inline-block;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.search-box .register-btn:hover {
+  background: linear-gradient(45deg, #2575fc, #6a11cb);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.text-content{
+  position: absolute;
+  top: 33%;
+  left: 7%;
+  z-index: 12;
+}
+header .text-content .text{
+  font-size: 27px;
+  color: #2c3350;
+}
+header .text-content .name{
+color: #2c3350;
+ font-size: 75px;
+ font-weight: 600;
+ margin: -20px 0 0 -3px;
+}
+header .text-content .job{
+ color: #2c3350;
+ font-size: 40px;
+ margin: 5px 0;
+ margin-top: -4px;
+ display: flex;
+}
+.text-content .typing-text{
+  margin-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 4px solid #1de2d1;
+  animation: typing 5s steps(15) infinite;
+}
+@keyframes typing{
+  0%{
+    width: 0ch;
+  }
+  50%{
+    width: 15ch;
+  }
+  100%{
+    width: 0ch;
+  }
+}
+.text-content .job .one{
+  color: #1de2d1;
+}
+.text-content .job .two{
+  color: #1de2d1;
+}
+.buttons{
+  margin: 20px 0 0 50px;
+}
+.text-content .buttons button{
+  outline: none;
+  margin: 0 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  color: #fff;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-image: linear-gradient( 135deg, #2AFADF     10%, #C346C2 100%);
+}
+.buttons button:hover{
+  transform: scale(0.97);
+}
+.content .girl img{
+  position: absolute;
+  height: 95%;
+  bottom: 0;
+  right: 80px;
+  position: absolute;
+}
+header .media-icons{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+}
+.media-icons a{
+ margin-top: 8px;
+ font-size: 20px;
+ font-weight: 500;
+ text-decoration: none;
+ opacity: 0.7;
+ color: #2c3350;
+ transition: all 0.3s ease;
+}
+.media-icons a:hover{
+ opacity: 1;
+}
+
+
+
+/* Crypto Cards Section */
+#crypto-cards {
+  padding: 50px 20px;
+  background: #f5f5f5;
+  text-align: center;
+}
+
+#crypto-cards h2 {
+  font-size: 30px;
+  color: #2c3350;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.crypto-card {
+  width: 300px;
+  background: #fff;
+  border: 2px solid #2c3350;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.crypto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.crypto-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 2px solid #1de2d1;
+}
+
+.crypto-card h3 {
+  font-size: 18px;
+  color: #2c3350;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.crypto-card p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.progress-bar-container {
+  width: 100%;
+  background: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.progress-bar {
+  height: 10px;
+  background: linear-gradient(135deg, #2AFADF, #C346C2);
+  width: 0%;
+  transition: width 0.5s;
+}
+
+.crypto-card button {
+  background-image: linear-gradient(135deg, #2AFADF 10%, #C346C2 100%);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.crypto-card button:hover {
+  transform: scale(0.97);
+}
+/* General Styling */
+body {
+  background-color: #f9f9f9; /* Light gray background */
+  color: #333; /* Dark gray for text */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container */
+.first_crypto-container {
+  max-width: 600px;
+  margin: 20px auto;
+  background: #fff; /* White card background */
+  border: 1px solid #ddd; /* Light gray border */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Header Styling */
+.first_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  color: #555; /* Medium gray */
+}
+
+.first_header h2 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #333; /* Dark gray */
+}
+
+.first_header .first_tab {
+  color: #888; /* Light gray for inactive tabs */
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.first_header .first_tab.first_active {
+  color: #333; /* Dark gray for active tab */
+  font-weight: bold;
+  border-bottom: 2px solid #666; /* Medium gray */
+}
+
+/* Crypto Item Styling */
+.first_crypto-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee; /* Light gray separator */
+}
+
+.first_crypto-item:last-child {
+  border-bottom: none;
+}
+
+.first_crypto-item img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.first_crypto-info {
+  display: flex;
+  align-items: center;
+}
+
+.first_crypto-name {
+  color: #888; /* Light gray for names */
+  font-size: 0.9rem;
+}
+
+.first_crypto-price {
+  font-size: 1.1rem;
+  color: #333; /* Dark gray for price */
+}
+
+.first_crypto-change {
+  color: #666; /* Medium gray for percentage change */
+}
+.first_title{
+  text-align: center;
+}
+.first_title h2{
+  font-size: 30px;
+  color: #2c3350;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+.team-section {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.team-section h1 {
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.team-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.member-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.member-card:hover {
+  transform: translateY(-5px);
+}
+
+.member-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.member-card h2 {
+  font-size: 1.5em;
+  margin: 10px 0;
+  color: #555;
+}
+
+.member-card p {
+  font-size: 1em;
+  color: #777;
+}
+
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+  margin: 10px;
+}
+
+.footer-column h3 {
+  border-bottom: 2px solid #fff;
+  display: inline-block;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin: 5px 0;
+}
+
+.footer-column ul li a {
+  color: #ddd;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+  color: #fff;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: #ddd;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #fff;
+}
+
+.copyright {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #aaa;
+}

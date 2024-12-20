@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending Tokens</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #4a4a4a;
+            margin: 0;
+            padding: 0;
+        }
+
+        .trending-table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .trending-table th, .trending-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .trending-table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .trending-table td {
+            color: #555;
+        }
+
+        .trending-table .buy-btn {
+            color: #007b5e;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .trending-table .buy-btn:hover {
+            color: #00563f;
+        }
+
+        .trending-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .token-form {
+            width: 50%;
+            margin: 40px auto;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .token-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .token-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .token-form input, .token-form textarea, .token-form button {
+            width: calc(100% - 20px);
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .token-form button {
+            background-color: #007b5e;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .token-form button:hover {
+            background-color: #00563f;
+        }
+
+        .minimal-header {
+            height: 30px;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins',sans-serif;
+}
+.makems {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+  }
+header nav{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 12;
+  }
+  /* Initial state of the navigation bar */
+  nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: top 0.3s ease, opacity 0.3s ease;
+  }
+  
+  /* Hidden state when scrolling down */
+  nav.hidden {
+    top: -100px; /* Moves the nav out of view */
+    opacity: 0;  /* Fades out the nav */
+  }
+  
+  .navbar{
+    width: 90%;
+    display: flex;
+    margin: 20px auto 0 auto;
+    align-items: center;
+    justify-content: space-between;
+  }
+    header nav .logo{
+    height: 80px;
+    width: 150px;
+  }
+  .logo img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+  nav .menu{
+    display: flex;
+  }
+  nav .menu li{
+    list-style: none;
+    margin: 0 10px;
+  }
+  nav .menu a{
+    color: #2c3e50;
+    font-size: 17px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  nav .menu a:hover{
+    color: #000;
+  }
+  nav .search-box{
+    position: relative;
+    height: 40px;
+    width: 250px;
+  }
+
+
+  .search-box input[type="text"]{
+    position: absolute;
+    font-size: 18px;
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    outline: none;
+    color: #2c3350;
+    border: 2px solid #2c3350;
+    background: #f2f2f2;
+    padding: 0 10px 0 40px;
+  }
+  .search-box .register-btn {
+    display: inline-block;
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .search-box .register-btn:hover {
+    background: linear-gradient(45deg, #2575fc, #6a11cb);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  .text-content{
+    position: absolute;
+    top: 33%;
+    left: 7%;
+    z-index: 12;
+  }
+  header .text-content .text{
+    font-size: 27px;
+    color: #2c3350;
+  }
+  header .text-content .name{
+  color: #2c3350;
+   font-size: 75px;
+   font-weight: 600;
+   margin: -20px 0 0 -3px;
+  }
+  header .text-content .job{
+   color: #2c3350;
+   font-size: 40px;
+   margin: 5px 0;
+   margin-top: -4px;
+   display: flex;
+  }
+  .text-content .typing-text{
+    margin-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 4px solid #1de2d1;
+    animation: typing 5s steps(15) infinite;
+  }
+  @keyframes typing{
+    0%{
+      width: 0ch;
+    }
+    50%{
+      width: 15ch;
+    }
+    100%{
+      width: 0ch;
+    }
+  }
+  .text-content .job .one{
+    color: #1de2d1;
+  }
+  .text-content .job .two{
+    color: #1de2d1;
+  }
+  .buttons{
+    margin: 20px 0 0 50px;
+  }
+  .text-content .buttons button{
+    outline: none;
+    margin: 0 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    color: #fff;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-image: linear-gradient( 135deg, #2AFADF     10%, #C346C2 100%);
+  }
+  .buttons button:hover{
+    transform: scale(0.97);
+  }
+
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  
+  .footer-column {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+  }
+  
+  .footer-column h3 {
+    border-bottom: 2px solid #fff;
+    display: inline-block;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+  }
+  
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-column ul li {
+    margin: 5px 0;
+  }
+  
+  .footer-column ul li a {
+    color: #ddd;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .footer-column ul li a:hover {
+    color: #fff;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .social-icons a {
+    color: #ddd;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 20px;
+    transition: color 0.3s;
+  }
+  
+  .social-icons a:hover {
+    color: #fff;
+  }
+  
+  .copyright {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #aaa;
+  }
+  /* Header Styling */
+.first_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  color: #555; /* Medium gray */
+}
+
+.first_header h2 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #333; /* Dark gray */
+}
+
+.first_header .first_tab {
+  color: #888; /* Light gray for inactive tabs */
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.first_header .first_tab.first_active {
+  color: #333; /* Dark gray for active tab */
+  font-weight: bold;
+  border-bottom: 2px solid #666; /* Medium gray */
+}
+.first_title{
+  text-align: center;
+}
+.first_title h2{
+  font-size: 30px;
+  color: #2c3350;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+.custom-section {
+  margin-top: 120px;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+          <nav>
+            <div class="navbar">
+              <div class="logo">
+                <img src="images/logo.png" alt="Logo">
+              </div>
+              <ul class="menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Latest</a></li>
+                <li><a href="#">Category</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+              <div class="search-box">
+                <a href="#" class="register-btn" onclick="registerField()">Go Back</a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <section class="custom-section">
+        <div class="first_title">
+            <h2>Actual Tokens</h2>
+          </div>
+             
+      </section>
+<section>
+    <div class="minimal-header"></div>
+
+    <table class="trending-table">
+        <tbody>
+            <tr>
+                <td>ALPHA</td>
+                <td>2h</td>
+                <td>30.4k</td>
+                <td>1.8k</td>
+                <td>12,120</td>
+                <td>$720K</td>
+                <td>$0.0015</td>
+                <td>-2.4%</td>
+                <td class="buy-btn" onclick="openForm('ALPHA')">Buy</td>
+            </tr>
+            <tr>
+                <td>BETA</td>
+                <td>10h</td>
+                <td>90.3k</td>
+                <td>3.5k</td>
+                <td>22,250</td>
+                <td>$2.1M</td>
+                <td>$0.0035</td>
+                <td>+10.7%</td>
+                <td class="buy-btn" onclick="openForm('BETA')">Buy</td>
+            </tr>
+            <tr>
+                <td>ZETA</td>
+                <td>7m</td>
+                <td>5.4k</td>
+                <td>102</td>
+                <td>4,675</td>
+                <td>$58.5K</td>
+                <td>$0.0009</td>
+                <td>+6.3%</td>
+                <td class="buy-btn" onclick="openForm('ZETA')">Buy</td>
+            </tr>
+            <tr>
+                <td>GAMMA</td>
+                <td>12h</td>
+                <td>60.2k</td>
+                <td>3.1k</td>
+                <td>15,789</td>
+                <td>$1.5M</td>
+                <td>$0.0026</td>
+                <td>-4.9%</td>
+                <td class="buy-btn" onclick="openForm('GAMMA')">Buy</td>
+            </tr>
+            <tr>
+                <td>THETA</td>
+                <td>15m</td>
+                <td>9.6k</td>
+                <td>210</td>
+                <td>3,430</td>
+                <td>$78.3K</td>
+                <td>$0.0011</td>
+                <td>+3.2%</td>
+                <td class="buy-btn" onclick="openForm('THETA')">Buy</td>
+            </tr>
+            <tr>
+                <td>KAPPA</td>
+                <td>3h</td>
+                <td>27.8k</td>
+                <td>940</td>
+                <td>6,780</td>
+                <td>$480K</td>
+                <td>$0.0018</td>
+                <td>+15.4%</td>
+                <td class="buy-btn" onclick="openForm('KAPPA')">Buy</td>
+            </tr>
+            <tr>
+                <td>LAMBDA</td>
+                <td>45m</td>
+                <td>13.1k</td>
+                <td>423</td>
+                <td>4,110</td>
+                <td>$340K</td>
+                <td>$0.0012</td>
+                <td>+7.8%</td>
+                <td class="buy-btn" onclick="openForm('LAMBDA')">Buy</td>
+            </tr>
+            <tr>
+                <td>XI</td>
+                <td>20m</td>
+                <td>10.3k</td>
+                <td>150</td>
+                <td>2,987</td>
+                <td>$200K</td>
+                <td>$0.0008</td>
+                <td>-1.2%</td>
+                <td class="buy-btn" onclick="openForm('XI')">Buy</td>
+            </tr>
+            <tr>
+                <td>OMICRON</td>
+                <td>5m</td>
+                <td>8.9k</td>
+                <td>240</td>
+                <td>4,456</td>
+                <td>$300K</td>
+                <td>$0.0013</td>
+                <td>+5.9%</td>
+                <td class="buy-btn" onclick="openForm('OMICRON')">Buy</td>
+            </tr>
+            <tr>
+                <td>PHI</td>
+                <td>11h</td>
+                <td>70.5k</td>
+                <td>2.8k</td>
+                <td>20,350</td>
+                <td>$1.8M</td>
+                <td>$0.0029</td>
+                <td>-8.5%</td>
+                <td class="buy-btn" onclick="openForm('PHI')">Buy</td>
+            </tr>
+            <tr>
+                <td>RHO</td>
+                <td>9h</td>
+                <td>48.7k</td>
+                <td>1.9k</td>
+                <td>18,987</td>
+                <td>$1.3M</td>
+                <td>$0.0015</td>
+                <td>-10.1%</td>
+                <td class="buy-btn" onclick="openForm('RHO')">Buy</td>
+            </tr>
+            <tr>
+                <td>SIGMA</td>
+                <td>2d</td>
+                <td>5.7m</td>
+                <td>55.7k</td>
+                <td>25,430</td>
+                <td>$23M</td>
+                <td>$0.2001</td>
+                <td>+13.6%</td>
+                <td class="buy-btn" onclick="openForm('SIGMA')">Buy</td>
+            </tr>
+            <tr>
+                <td>TAU</td>
+                <td>1m</td>
+                <td>3.2k</td>
+                <td>58</td>
+                <td>2,567</td>
+                <td>$36K</td>
+                <td>$0.0004</td>
+                <td>+1.1%</td>
+                <td class="buy-btn" onclick="openForm('TAU')">Buy</td>
+            </tr>
+            <tr>
+                <td>UPSILON</td>
+                <td>6h</td>
+                <td>44.8k</td>
+                <td>1.4k</td>
+                <td>14,890</td>
+                <td>$890K</td>
+                <td>$0.0014</td>
+                <td>+2.5%</td>
+                <td class="buy-btn" onclick="openForm('UPSILON')">Buy</td>
+            </tr>
+            <tr>
+                <td>CHI</td>
+                <td>7h</td>
+                <td>39.7k</td>
+                <td>1.8k</td>
+                <td>12,450</td>
+                <td>$950K</td>
+                <td>$0.0019</td>
+                <td>-6.7%</td>
+                <td class="buy-btn" onclick="openForm('CHI')">Buy</td>
+            </tr>
+            <tr>
+                <td>PSI</td>
+                <td>20h</td>
+                <td>100.3k</td>
+                <td>3.9k</td>
+                <td>30,670</td>
+                <td>$3.9M</td>
+                <td>$0.0042</td>
+                <td>+9.3%</td>
+                <td class="buy-btn" onclick="openForm('PSI')">Buy</td>
+            </tr>
+            <tr>
+                <td>OMEGA</td>
+                <td>25m</td>
+                <td>16.4k</td>
+                <td>520</td>
+                <td>6,430</td>
+                <td>$280K</td>
+                <td>$0.0010</td>
+                <td>-4.6%</td>
+                <td class="buy-btn" onclick="openForm('OMEGA')">Buy</td>
+            </tr>
+            <tr>
+                <td>DELTA-X</td>
+                <td>10m</td>
+                <td>7.8k</td>
+                <td>310</td>
+                <td>3,230</td>
+                <td>$95K</td>
+                <td>$0.0009</td>
+                <td>+3.7%</td>
+                <td class="buy-btn" onclick="openForm('DELTA-X')">Buy</td>
+            </tr>
+            <tr>
+                <td>HYPER</td>
+                <td>18m</td>
+                <td>8.9k</td>
+                <td>380</td>
+                <td>4,120</td>
+                <td>$110K</td>
+                <td>$0.0010</td>
+                <td>+1.9%</td>
+                <td class="buy-btn" onclick="openForm('HYPER')">Buy</td>
+            </tr>
+            
+        </tbody>
+    </table>
+    
+    <div id="tokenForm" class="token-form" style="display: none;">
+        <h2>To make a Token</h2>
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" placeholder="First Name">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Last Name">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Email Address">
+        <label for="tokenTicker">Token Ticker</label>
+        <input type="text" id="tokenTicker" name="tokenTicker" placeholder="Ticker (e.g., BTC)">
+        <label for="details">Request Details</label>
+        <textarea id="details" name="details" rows="4" placeholder="Introduce yourself and why you want to make a token..."></textarea>
+        <label for="upload">Upload File</label>
+        <input type="file" id="upload" name="upload">
+        <button type="submit" onclick="closeForm()">Send Request</button>
+    </div>
+</section>
+<footer>
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>About Us</h3>
+        <p>We provide quality content and services to our users.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook">&#x1F465;</a>
+          <a href="#" aria-label="Twitter">&#x1F426;</a>
+          <a href="#" aria-label="Instagram">&#x1F48E;</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">&copy; 2024 Your Company. All rights reserved.</div>
+  </footer>
+
+    <script>
+        const tokensTable = document.querySelector('.trending-table');
+        const form = document.getElementById('tokenForm');
+
+        function openForm(tokenName) {
+            // Hide tokens table
+            tokensTable.style.display = 'none';
+
+            // Show form
+            form.style.display = 'block';
+
+            // Pre-fill the token ticker
+            const tickerField = document.getElementById('tokenTicker');
+            tickerField.value = tokenName;
+        }
+
+        function closeForm() {
+            // Hide form
+            form.style.display = 'none';
+
+            // Show tokens table
+            tokensTable.style.display = 'table';
+        }
+        let lastScrollY = window.scrollY; // Track the last scroll position
+  const nav = document.querySelector('nav');
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > lastScrollY) {
+      // Scrolling down
+      nav.classList.add('hidden');
+    } else {
+      // Scrolling up
+      nav.classList.remove('hidden');
+    }
+    lastScrollY = window.scrollY; // Update the last scroll position
+  });
+  function registerField(){
+    window.location.href = "index.html";
+  }
+    </script>
+
+</body>
+</html>
